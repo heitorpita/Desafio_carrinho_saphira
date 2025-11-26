@@ -1,3 +1,5 @@
+## PROJETO RODANDO EM : https://desafio-carrinho-saphira.onrender.com/products
+
 ## 🎯 Objetivo
 
 Construir uma aplicação simples e eficiente que permita aos usuários visualizar uma lista de produtos, adicionar itens ao carrinho, remover itens e visualizar o resumo financeiro (subtotal e total), utilizando uma stack moderna e performática.
