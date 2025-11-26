@@ -1,0 +1,39 @@
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Product {
+  id        Int     @id @default(autoincrement())
+  name      String
+  price     Float
+  image_url String  
+
+  cartItems CartItem[]
+}
+
+model Cart {
+  id       Int      @id @default(autoincrement())
+  token    String   @unique
+  subtotal Float     
+  total    Float     
+
+  items    CartItem[]
+}
+
+
+model CartItem {
+  id         Int      @id @default(autoincrement())
+  quantity   Int
+
+  cartId     Int
+  productId  Int
+
+  cart       Cart     @relation(fields: [cartId], references: [id])
+  product    Product  @relation(fields: [productId], references: [id])
+}
