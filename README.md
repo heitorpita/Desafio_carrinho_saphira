@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## 🎯 Objetivo
 
-## Getting Started
+Construir uma aplicação simples e eficiente que permita aos usuários visualizar uma lista de produtos, adicionar itens ao carrinho, remover itens e visualizar o resumo financeiro (subtotal e total), utilizando uma stack moderna e performática.
 
-First, run the development server:
+## 🚀 Funcionalidades
 
-```bash
+- **Listagem de Produtos:** Exibição de produtos disponíveis com nome, preço e imagem.
+- **Gerenciamento de Carrinho:**
+  - Adicionar produtos ao carrinho.
+  - Remover produtos do carrinho.
+  - Persistência de dados no banco.
+- **Resumo do Pedido:** Cálculo automático de quantidade, subtotal e total.
+- **API RESTful:** Endpoints dedicados para manipulação de dados.
+
+
+## 🏗️ Arquitetura e Decisões
+
+1.  **Next.js App Router:** Escolhido para aproveitar a renderização híbrida (Server e Client Components) e o roteamento simplificado baseados em arquivos.
+2.  **Prisma ORM:** Utilizado pela facilidade de migração, tipagem segura (type-safety) e produtividade na comunicação com o PostgreSQL.
+3.  **Estrutura do Banco de Dados:**
+    *   `products`: Armazena o catálogo fixo de itens.
+    *   `cart` e `cart_items`: Modelo relacional para separar a "sessão" de compra dos itens individuais, permitindo escalabilidade (ex: múltiplos carrinhos futuros).
+4.  **Render:** Escolhido para o deploy por oferecer suporte nativo a PostgreSQL e Node.js com configuração simplificada de variáveis de ambiente.
+
+## 🔧 Instalação e Configuração
+
+1. **Clone o repositório:**
+
+git clone https://github.com/heitorpita/Desafio_carrinho_saphira
+cd Desafio_carrinho_saphira
+
+2. **Instale as dependências:**
+npm install
+
+3. **Configure as variáveis de ambiente:**
+Crie um arquivo `.env` na raiz do projeto (você pode usar `.env.example` como base se existir) e adicione suas credenciais:
+
+## 🔐 Variáveis de Ambiente
+
+O projeto necessita das seguintes variáveis no arquivo `.env`:
+
+## 🗄️ Banco de Dados
+
+Este projeto utiliza o [Prisma ORM](https://www.prisma.io/). Siga os passos para configurar o banco:
+
+1. **Gerar as tabelas (Migrations):**
+   Execute o comando para criar as tabelas (`products`, `cart`, `cart_items`) no seu banco de dados configurado.
+
+npx prisma migrate dev --name init
+
+text
+
+2. **Gerar o Client do Prisma:**
+Sempre que houver mudanças no schema ou após a instalação:
+
+npx prisma generate
+
+text
+
+3. **Popular o banco (Seed) - *Opcional*:**
+Se houver um script de seed configurado no `package.json` ou na pasta `prisma`:
+
+## ⚡ Rodando o Projeto
+
+Para iniciar o servidor de desenvolvimento localmente:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Desenvolvido por Heitor Pita
